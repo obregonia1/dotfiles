@@ -4,5 +4,5 @@ dotfiles=(.zshrc .vimrc)
 
 # ファイルのシンボリックリンクをホームディレクトリ直下に作成する
 for file in "${dotfiles[@]}"; do
-        ln -svf $file ~/
+        ln -svf $PWD/$file ~/
 done
