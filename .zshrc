@@ -1,0 +1,1 @@
+/Users/kentaro/.zprezto/runcoms/zshrc
