@@ -30,6 +30,7 @@ alias rc="rails c"
 alias rdm="rails db:migrate"
 alias sz="source ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias vz="vim ~/src/github.com/obregonia1/dotfiles/.zshrc"
+alias lz="less ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias fc="find_cd"
 alias yare="rm -rf node_modules/.cache/ && yarn dev"
 alias drca="bin/docker exec admin rails c"
@@ -42,6 +43,8 @@ alias dp="docker ps"
 alias bdu="bin/docker up"
 alias drss="bin/docker exec site bundle exec rspec"
 alias drsa="bin/docker exec admin bundle exec rspec"
+alias ds="bin/docker exec site"
+alias da="bin/docker exec admin"
 
 alias ll="ls -l"
 alias la="ls -a"
@@ -83,10 +86,12 @@ function find_cd() {
 }
 
 export PATH="$PATH:/Users/kentaro/development/flutter/bin"
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
+# export PATH="$HOME/.nodenv/bin:$PATH"
+# eval "$(nodenv init -)"
 export LESS="-NiRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
 setopt hist_ignore_dups
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+. /opt/homebrew/opt/asdf/asdf.sh
