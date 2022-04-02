@@ -19,6 +19,7 @@ alias gsc="git switch -c"
 alias gsd="git switch develop"
 alias gpd="git pull origin develop"
 alias gh="git history"
+alias gcm="git commit -m"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias video="open -a /Applications/5KPlayer.app/ "
@@ -33,8 +34,7 @@ alias vz="vim ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias lz="less ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias fc="find_cd"
 alias yare="rm -rf node_modules/.cache/ && yarn dev"
-alias drca="bin/docker exec admin rails c"
-alias drcs="bin/docker exec site rails c"
+alias mdc="mkdir_cd"
 
 # docker
 alias drua="bin/docker exec admin bundle exec rubocop"
@@ -45,6 +45,8 @@ alias drss="bin/docker exec site bundle exec rspec"
 alias drsa="bin/docker exec admin bundle exec rspec"
 alias ds="bin/docker exec site"
 alias da="bin/docker exec admin"
+alias drca="bin/docker exec admin rails c"
+alias drcs="bin/docker exec site rails c"
 
 alias ll="ls -l"
 alias la="ls -a"
@@ -79,11 +81,11 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-function chpwd() { ls }
-
 function find_cd() {
     cd "$(fd  --type directory . | peco)"
 }
+
+function mkdir_cd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 export PATH="$PATH:/Users/kentaro/development/flutter/bin"
 # export PATH="$HOME/.nodenv/bin:$PATH"
