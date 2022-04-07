@@ -20,9 +20,13 @@ alias gsd="git switch develop"
 alias gpd="git pull origin develop"
 alias gh="git history"
 alias gcm="git commit -m"
+alias gst="git stash"
+alias gstc="git stash clear"
+alias gstu="git stash -u"
+alias gstp="git stash pop stash@{0}"
+alias gstl="git stash list"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
-alias video="open -a /Applications/5KPlayer.app/ "
 alias be="bundle exec"
 alias bi="bundle install"
 alias rs="rails s"
@@ -35,13 +39,15 @@ alias lz="less ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias fc="find_cd"
 alias yare="rm -rf node_modules/.cache/ && yarn dev"
 alias mdc="mkdir_cd"
+alias so="source"
+alias le="less"
 
 # docker
 alias drua="bin/docker exec admin bundle exec rubocop"
 alias drus="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
-alias drss="bin/docker exec site bundle exec rspec"
+alias drss="bin/docker exec site bundle exec rspec --exclude-pattern 'spec/ops/**/*_spec.rb'"
 alias drsa="bin/docker exec admin bundle exec rspec"
 alias ds="bin/docker exec site"
 alias da="bin/docker exec admin"
@@ -87,7 +93,10 @@ function find_cd() {
 
 function mkdir_cd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
+function chpwd() { ls }
+
 export PATH="$PATH:/Users/kentaro/development/flutter/bin"
+export PATH=$PATH:~/bin
 # export PATH="$HOME/.nodenv/bin:$PATH"
 # eval "$(nodenv init -)"
 export LESS="-NiRMXS"
