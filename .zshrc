@@ -22,6 +22,7 @@ alias gh="git history"
 alias gcm="git commit -m"
 alias gst="git stash"
 alias gstc="git stash clear"
+alias gstat="git status" 
 alias gstu="git stash -u"
 alias gstp="git stash pop stash@{0}"
 alias gstl="git stash list"
@@ -58,8 +59,10 @@ alias ll="ls -l"
 alias la="ls -a"
 alias lla="ls -la"
 
+# delete line head to cursol
 bindkey \^U backward-kill-line
 
+# display repositories managed by ghq and cd
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
@@ -71,6 +74,7 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
+# incremental history search with peco
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -87,18 +91,18 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+# search directory and cd
 function find_cd() {
     cd "$(fd  --type directory . | peco)"
 }
 
+# mkdir & cd made directory
 function mkdir_cd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
+# run ls after cd
 function chpwd() { ls }
 
-export PATH="$PATH:/Users/kentaro/development/flutter/bin"
 export PATH=$PATH:~/bin
-# export PATH="$HOME/.nodenv/bin:$PATH"
-# eval "$(nodenv init -)"
 export LESS="-NiRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
@@ -106,3 +110,4 @@ setopt hist_ignore_dups
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 . /opt/homebrew/opt/asdf/asdf.sh
+
