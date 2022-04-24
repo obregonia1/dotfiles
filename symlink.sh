@@ -3,7 +3,11 @@
 for f in .??*
 do
   [ "$f" = ".git" ] && continue
-
-  ln -snfv "$PWD/$f" "$HOME"/"$f"
+  target="$HOME/$f"
+  if [ -e "$target" ]; then
+    echo "$f already exists... Skipping."
+  else
+    ln -snfv "$PWD/$f" "$HOME"/"$f"
+  fi
 done
 
