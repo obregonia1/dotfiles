@@ -11,9 +11,11 @@ local function eikanaEvent(event)
     if not f['cmd'] then
       if simpleCmd == false then
         if c == map['cmd'] then
-          hs.keycodes.setMethod('Alphanumeric (Google)')
-        elseif c == map['rightcmd'] then
+        --  hs.keycodes.setMethod('Alphanumeric (Google)')
           hs.keycodes.setMethod('Hiragana (Google)')
+        elseif c == map['rightcmd'] then
+        --  hs.keycodes.setMethod('Hiragana (Google)')
+          hs.keycodes.setMethod('Alphanumeric (Google)')
         end
       end
       simpleCmd = false
@@ -54,3 +56,4 @@ fbpn = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
   return false
 end)
 fbpn:start()
+
