@@ -11,7 +11,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-# git
+#######
+# git #
+#######
 alias g="git"
 alias gr="git restore"
 alias gb="git branch"
@@ -28,7 +30,6 @@ alias gstu="git stash -u"
 alias gstp="git stash pop stash@{0}"
 alias gstl="git stash list"
 alias gad="git add"
-alias gdf="git diff"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias be="bundle exec"
@@ -48,7 +49,9 @@ alias le="less"
 alias vi="vim"
 alias dirto="dirtouch"
 
-# docker
+##########
+# docker #
+##########
 alias drua="bin/docker exec admin bundle exec rubocop"
 alias drus="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
@@ -62,73 +65,17 @@ alias drca="bin/docker exec admin rails c"
 alias drcs="bin/docker exec site rails c"
 alias dsbe="bin/docker exec site bundle exec"
 alias dabe="bin/docker exec admin bundle exec"
+alias da="docker attach"
 
 alias la="ls -aG"
 alias ls="ls -G"
 alias ll="ls -lG"
 alias lla="ls -laG"
 
+alias pbc="pbcopy"
+
 # delete line head to cursol
 bindkey \^U backward-kill-line
-
-# display repositories managed by ghq and cd
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N peco-src
-bindkey '^]' peco-src
-
-# incremental history search with peco
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
-## コマンド履歴からディレクトリ検索・移動
-if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
-  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-  add-zsh-hook chpwd chpwd_recent_dirs
-  zstyle ':completion:*' recent-dirs-insert both
-  zstyle ':chpwd:*' recent-dirs-default true
-  zstyle ':chpwd:*' recent-dirs-max 1000
-  zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
-fi
-function peco-cdr () {
-  local selected_dir="$(cdr -l | sed 's/^[0-9]* *//' | peco)"
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-}
-zle -N peco-cdr
-bindkey '^q' peco-cdr
-
-## カレントディレクトリ以下のディレクトリ検索・移動
-function find_cd() {
-  local selected_dir=$(find . -type d | peco)
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-}
-zle -N find_cd
-bindkey '^X' find_cd
 
 # search directory and cd
 function find_cd() {
@@ -214,6 +161,28 @@ zstyle ':completion:*:default' menu select=1
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light gimbo/iterm2-tabs.zsh
+zinit light paulirish/git-open
+zinit light supercrabtree/k
+
+############
+# anyframe #
+############
+zinit light mollifier/anyframe
+
+# select recent directory & cd with peco
+bindkey '^q' anyframe-widget-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# incremental history search with peco
+bindkey '^r' anyframe-widget-execute-history
+
+# display repositories managed by ghq and cd
+bindkey '^]' anyframe-widget-cd-ghq-repository
+
+# select & switch git branch
+bindkey '^xh' anyframe-widget-checkout-git-branch
 
 export PS1="%~ $ "
 
