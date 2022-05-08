@@ -1,16 +1,4 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Customize to your needs...
 #######
 # git #
 #######
@@ -48,6 +36,11 @@ alias so="source"
 alias le="less"
 alias vi="vim"
 alias dirto="dirtouch"
+alias pbc="pbcopy"
+alias la="ls -aG"
+alias ls="ls -G"
+alias ll="ls -lG"
+alias lla="ls -laG"
 
 ##########
 # docker #
@@ -66,13 +59,6 @@ alias drcs="bin/docker exec site rails c"
 alias dsbe="bin/docker exec site bundle exec"
 alias dabe="bin/docker exec admin bundle exec"
 alias da="docker attach"
-
-alias la="ls -aG"
-alias ls="ls -G"
-alias ll="ls -lG"
-alias lla="ls -laG"
-
-alias pbc="pbcopy"
 
 # delete line head to cursol
 bindkey \^U backward-kill-line
@@ -98,7 +84,6 @@ function dirtouch() {
 }
 
 export PATH=$PATH:~/bin
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 export LESS="-NiRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
@@ -111,7 +96,27 @@ setopt AUTO_PARAM_KEYS
 setopt inc_append_history
 setopt share_history
 
-. /opt/homebrew/opt/asdf/asdf.sh
+# switch brew by architecture
+if [ "$(uname -m)" = "arm64" ]; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH="/opt/homebrew/bin:$PATH"
+
+else
+  . /usr/local/opt/asdf/libexec/asdf.sh
+  eval "$(/usr/local/bin/brew shellenv)"
+  export PATH=/usr/local/bin:$PATH
+fi
+
+# switch openssl version by ruby version
+RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
+if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
+  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+  export LIBRARY_PATH=:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
+else
+  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1m/lib/
+fi
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
