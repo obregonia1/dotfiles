@@ -85,4 +85,6 @@ end
 
 remapKey({"ctrl"}, ";", keyCode("\\"))
 remapKey({"ctrl"}, "'", keyCode("\\", {"shift"}))
+remapKey({"ctrl"}, "[", keyCode("escape"))
+remapKey({"ctrl"}, "j", keyCode("return"))
 
