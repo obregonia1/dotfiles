@@ -57,3 +57,32 @@ fbpn = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
 end)
 fbpn:start()
 
+local function keyCode(key, modifiers)
+   modifiers = modifiers or {}
+   return function()
+      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+      hs.timer.usleep(1000)
+      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+   end
+end
+
+local function keyCodeUpper(key, modifiers)
+   modifiers = modifiers or {}
+   return function()
+      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+      hs.timer.usleep(1000)
+      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+   end
+end
+
+local function remapKey(modifiers, key, keyCode)
+   hs.hotkey.bind(modifiers, key, keyCode, nil, keyCode)
+end
+
+local function remapKeyUpper(modifiers, key, keyCodeUpper)
+   hs.hotkey.bind(modifiers, key, keyCode, nil, keyCodeUpper)
+end
+
+remapKey({"ctrl"}, ";", keyCode("\\"))
+remapKey({"ctrl"}, "'", keyCode("\\", {"shift"}))
+
