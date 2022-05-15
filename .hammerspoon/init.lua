@@ -83,8 +83,8 @@ local function remapKeyUpper(modifiers, key, keyCodeUpper)
    hs.hotkey.bind(modifiers, key, keyCode, nil, keyCodeUpper)
 end
 
-remapKey({"ctrl"}, ";", keyCode("\\"))
-remapKey({"ctrl"}, "'", keyCode("\\", {"shift"}))
+remapKey({"alt"}, ";", keyCode("\\"))
+remapKey({"alt"}, "'", keyCode("\\", {"shift"}))
 remapKey({"ctrl"}, "[", keyCode("escape"))
 remapKey({"ctrl"}, "j", keyCode("return"))
 
