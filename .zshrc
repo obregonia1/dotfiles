@@ -46,8 +46,7 @@ alias ..="cd .."
 ##########
 # docker #
 ##########
-alias drua="bin/docker exec admin bundle exec rubocop"
-alias drus="bin/docker exec site bundle exec rubocop"
+alias dru="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
 alias drss="bin/docker exec site bundle exec rspec"
