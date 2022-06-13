@@ -28,7 +28,7 @@ alias rc="rails c"
 alias rdm="rails db:migrate"
 alias sz="source ~/dotfiles/.zshrc"
 alias vz="vim ~/dotfiles/.zshrc"
-alias lz="less ~/dotfiles/.zshrc"
+alias lz="bat ~/dotfiles/.zshrc"
 alias fc="find_cd"
 alias yare="rm -rf node_modules/.cache/ && yarn dev"
 alias mdc="mkdir_cd"
@@ -41,6 +41,7 @@ alias la="ls -aG"
 alias ls="ls -G"
 alias ll="ls -lG"
 alias lla="ls -laG"
+alias ..="cd .."
 
 ##########
 # docker #
@@ -49,7 +50,7 @@ alias drua="bin/docker exec admin bundle exec rubocop"
 alias drus="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
-alias drss="bin/docker exec site bundle exec rspec --exclude-pattern 'spec/ops/**/*_spec.rb'"
+alias drss="bin/docker exec site bundle exec rspec"
 alias drsa="bin/docker exec admin bundle exec rspec"
 alias ds="bin/docker exec site"
 alias da="bin/docker exec admin"
@@ -83,40 +84,45 @@ function dirtouch() {
   done
 }
 
+# setting to ctrl + w delete to symbol
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
+
 export PATH=$PATH:~/bin
-export LESS="-NiRMXS"
+export LESS="-iRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
 export EDITOR='vim'
 export VISUAL='vim'
-export PAGER='less'
+export PAGER='bat'
 setopt hist_ignore_dups
 setopt AUTO_CD
 setopt AUTO_PARAM_KEYS
 setopt inc_append_history
 setopt share_history
+export NODE_OPTIONS="--max-old-space-size=2048"
 
 # switch brew by architecture
 if [ "$(uname -m)" = "arm64" ]; then
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export PATH="/opt/homebrew/bin:$PATH"
-
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
 else
-  . /usr/local/opt/asdf/libexec/asdf.sh
   eval "$(/usr/local/bin/brew shellenv)"
   export PATH=/usr/local/bin:$PATH
+  . /usr/local/opt/asdf/libexec/asdf.sh
 fi
 
+export PATH=$PATH:`npm bin -g`
+
 # switch openssl version by ruby version
-RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
-if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
-  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-  export LIBRARY_PATH=:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
-else
+#RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
+#if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
+#  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+#  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
+#else
   export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
-  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1m/lib/
-fi
+  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
+#fi
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -177,6 +183,7 @@ zinit light mollifier/anyframe
 
 # select recent directory & cd with peco
 bindkey '^q' anyframe-widget-cdr
+alias cdr="anyframe-widget-cdr"
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
@@ -184,13 +191,18 @@ add-zsh-hook chpwd chpwd_recent_dirs
 bindkey '^r' anyframe-widget-execute-history
 
 # display repositories managed by ghq and cd
+zle -N anyframe-widget-cd-ghq-repository
 bindkey '^]' anyframe-widget-cd-ghq-repository
+alias cdg="anyframe-widget-cd-ghq-repository"
 
 # select & switch git branch
 bindkey '^xh' anyframe-widget-checkout-git-branch
+alias gsh="anyframe-widget-checkout-git-branch"
 
 export PS1="%~ $ "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
