@@ -182,8 +182,14 @@ zinit light supercrabtree/k
 zinit light mollifier/anyframe
 
 # select recent directory & cd with peco
-bindkey '^q' anyframe-widget-cdr
-alias cdr="anyframe-widget-cdr"
+function anyframe-cdr () {
+  anyframe-source-cdr  \
+    | anyframe-selector-auto \
+    | anyframe-action-put
+}
+zle -N anyframe-cdr
+bindkey '^q' anyframe-cdr
+alias cdr="anyframe-cdr"
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
