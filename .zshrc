@@ -10,7 +10,9 @@ alias gsc="git switch -c"
 alias gsd="git switch develop"
 alias gpd="git pull origin develop"
 alias gh="git history"
+alias gc="git commit"
 alias gcm="git commit -m"
+alias gca="git commit --amend"
 alias gst="git stash"
 alias gstc="git stash clear"
 alias gstat="git status" 
@@ -46,12 +48,13 @@ alias ..="cd .."
 ##########
 # docker #
 ##########
+alias d="docker"
 alias dru="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
 alias drs="bin/docker exec site bundle exec rspec"
 alias ds="bin/docker exec site"
-alias de="bin/docker exec"
+alias de="docker exec"
 alias drc="bin/docker exec site rails c"
 alias dbe="bin/docker exec site bundle exec"
 alias da="docker attach"
@@ -79,6 +82,11 @@ function dirtouch() {
   done
 }
 
+# git diff with bat
+batdiff() {
+  git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
 # setting to ctrl + w delete to symbol
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
 
@@ -95,6 +103,8 @@ setopt AUTO_PARAM_KEYS
 setopt inc_append_history
 setopt share_history
 export NODE_OPTIONS="--max-old-space-size=2048"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+typeset -aU path cdpath fpath manpath
 
 # switch brew by architecture
 if [ "$(uname -m)" = "arm64" ]; then
@@ -112,11 +122,11 @@ export PATH=$PATH:`npm bin -g`
 # switch openssl version by ruby version
 #RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
 #if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
-#  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-#  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
+  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
 #else
-  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
-  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
+#  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+#  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
 #fi
 
 # Load a few important annexes, without Turbo
@@ -207,3 +217,4 @@ export PS1="%~ $ "
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
