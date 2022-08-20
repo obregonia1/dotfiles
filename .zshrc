@@ -28,9 +28,9 @@ alias rs="rails s"
 alias r="rails"
 alias rc="rails c"
 alias rdm="rails db:migrate"
-alias sz="source ~/dotfiles/.zshrc"
-alias vz="vim ~/dotfiles/.zshrc"
-alias lz="bat ~/dotfiles/.zshrc"
+alias sz="source ~/src/github.com/obregonia1/dotfiles/.zshrc"
+alias vz="vim ~/src/github.com/obregonia1/dotfiles/.zshrc"
+alias lz="bat ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias fc="find_cd"
 alias yare="rm -rf node_modules/.cache/ && yarn dev"
 alias mdc="mkdir_cd"
@@ -123,7 +123,7 @@ export PATH=$PATH:`npm bin -g`
 #RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
 #if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
   export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.1.1/lib/
+  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.0.5/lib/
 #else
 #  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 #  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
