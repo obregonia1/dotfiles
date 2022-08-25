@@ -114,7 +114,11 @@ if [ "$(uname -m)" = "arm64" ]; then
 else
   eval "$(/usr/local/bin/brew shellenv)"
   export PATH=/usr/local/bin:$PATH
-  . /usr/local/opt/asdf/libexec/asdf.sh
+  # for m1
+  #  . /usr/local/opt/asdf/libexec/asdf.sh
+
+  # for intel
+  . /usr/local/opt/asdf/asdf.sh
 fi
 
 export PATH=$PATH:`npm bin -g`
@@ -122,13 +126,15 @@ export PATH=$PATH:`npm bin -g`
 # switch openssl version by ruby version
 #RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
 #if [[ `echo "$RUBY_V >= 3.1" | bc` == 1 ]];then
-  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.0.5/lib/
+#  export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+#  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@3/3.0.5/lib/
 #else
 #  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 #  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
 #fi
-
+# export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export PATH="/usr/local/Cellar/openssl@1.1/1.1.1m/bin:$PATH"
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/Cellar/zstd/1.5.2/lib:/usr/local/Cellar/openssl@1.1/1.1.1m/lib/
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 
