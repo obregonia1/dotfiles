@@ -26,65 +26,59 @@ end
 eikana = hs.eventtap.new({hs.eventtap.event.types.keyDown, hs.eventtap.event.types.flagsChanged}, eikanaEvent)
 eikana:start()
 
-fbpn = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e)
-    if e:getFlags().ctrl and e:getFlags().shift then
-      if e:getKeyCode() == 35 then
-        hs.eventtap.event.newKeyEvent({"shift"}, "up", true):post(); return true;
-      elseif e:getKeyCode() == 11 then
-        hs.eventtap.event.newKeyEvent({"shift"}, "left", true):post(); return true;
-      elseif e:getKeyCode() == 45 then
-        hs.eventtap.event.newKeyEvent({"shift"}, "down", true):post(); return true;
-      elseif e:getKeyCode() == 3 then
-        hs.eventtap.event.newKeyEvent({"shift"}, "right", true):post(); return true;
-      elseif e:getKeyCode() == 6 then
-        hs.eventtap.event.newKeyEvent({'shift','cmd'}, 'z', true):post(); return true;
-      end
-    end
+local function keyCode(key, mods, callback)
+  mods = mods or {}
+  callback = callback or function() end
+  return function()
+    hs.eventtap.event.newKeyEvent(mods, string.lower(key), true):post()
+    hs.timer.usleep(1000)
+    hs.eventtap.event.newKeyEvent(mods, string.lower(key), false):post()
 
-    if e:getFlags().ctrl then
-    if e:getKeyCode() == 35 then
-      hs.eventtap.event.newKeyEvent({}, 'up', true):post(); return true;
-    elseif e:getKeyCode() == 11 then
-      hs.eventtap.event.newKeyEvent({}, 'left', true):post(); return true;
-    elseif e:getKeyCode() == 45 then
-      hs.eventtap.event.newKeyEvent({}, 'down', true):post(); return true;
-    elseif e:getKeyCode() == 3 then
-      hs.eventtap.event.newKeyEvent({}, 'right', true):post(); return true;
-    end
+    callback()
   end
-
-  return false
-end)
-fbpn:start()
-
-local function keyCode(key, modifiers)
-   modifiers = modifiers or {}
-   return function()
-      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-      hs.timer.usleep(1000)
-      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-   end
 end
 
-local function keyCodeUpper(key, modifiers)
-   modifiers = modifiers or {}
-   return function()
-      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-      hs.timer.usleep(1000)
-      hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-   end
+local function switchHotKeys(enable)
+    for k, v in pairs(hs.hotkey.getHotkeys()) do
+        if enable then
+            v["_hk"]:enable()
+        else
+            for _, n in pairs(globalRemaps) do
+                if n == k then
+                  -- do nothing
+                else
+                  v["_hk"]:disable()
+                end
+            end
+        end
+    end
+end
+
+local function handleGlobalEvent(name, event, app)
+    if event == hs.application.watcher.activated then
+        if name == "Google Chrome" then
+            switchHotKeys(true)
+        else
+            switchHotKeys(false)
+        end
+    end
 end
 
 local function remapKey(modifiers, key, keyCode)
    hs.hotkey.bind(modifiers, key, keyCode, nil, keyCode)
 end
 
-local function remapKeyUpper(modifiers, key, keyCodeUpper)
-   hs.hotkey.bind(modifiers, key, keyCode, nil, keyCodeUpper)
-end
+watcher = hs.application.watcher.new(handleGlobalEvent)
+watcher:start()
 
+globalRemaps = {1, 2, 3}
+
+-- globalRemaps start
+remapKey({"ctrl"}, "[", keyCode("escape"))
 remapKey({"alt"}, ";", keyCode("\\"))
 remapKey({"alt"}, "'", keyCode("\\", {"shift"}))
-remapKey({"ctrl"}, "[", keyCode("escape"))
-remapKey({"ctrl"}, "j", keyCode("return"))
+-- globalRemaps end
+
+remapKey({"ctrl"}, "n", keyCode("down"))
+remapKey({"ctrl"}, "p", keyCode("up"))
 
