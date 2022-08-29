@@ -39,17 +39,14 @@ local function keyCode(key, mods, callback)
 end
 
 local function switchHotKeys(enable)
-    for k, v in pairs(hs.hotkey.getHotkeys()) do
-        if enable then
+    hotkeys = hs.hotkey.getHotkeys()
+    if enable then
+        for k, v in pairs(hotkeys) do
             v["_hk"]:enable()
-        else
-            for _, n in pairs(globalRemaps) do
-                if n == k then
-                  -- do nothing
-                else
-                  v["_hk"]:disable()
-                end
-            end
+        end
+    else
+        for n in pairs(limitedRemaps) do
+            hotkeys[n]["_hk"]:disable()
         end
     end
 end
@@ -71,14 +68,16 @@ end
 watcher = hs.application.watcher.new(handleGlobalEvent)
 watcher:start()
 
-globalRemaps = {1, 2, 3}
+limitedRemaps = {1, 2}
 
--- globalRemaps start
+-- limitedRemaps start
+remapKey({"ctrl"}, "n", keyCode("down"))
+remapKey({"ctrl"}, "p", keyCode("up"))
+-- limitedRemaps end
+
 remapKey({"ctrl"}, "[", keyCode("escape"))
 remapKey({"alt"}, ";", keyCode("\\"))
 remapKey({"alt"}, "'", keyCode("\\", {"shift"}))
--- globalRemaps end
-
-remapKey({"ctrl"}, "n", keyCode("down"))
-remapKey({"ctrl"}, "p", keyCode("up"))
+remapKey({"ctrl", "alt"}, "f", keyCode("right", {"alt"}))
+remapKey({"ctrl", "alt"}, "b", keyCode("left", {"alt"}))
 
