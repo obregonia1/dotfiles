@@ -6,6 +6,8 @@ set smartcase
 set tabstop=2
 set expandtab
 set shiftwidth=2
+set backspace=2
+set autoindent
 set clipboard=unnamed
 set cursorline
 set incsearch
@@ -15,10 +17,16 @@ set laststatus=2
 set wildmenu
 syntax on
 inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC>
 inoremap <C-d> <Del>
 imap [ []<left>
 imap ( ()<left>
 imap { {}<left>
+nnoremap あ a
+nnoremap い i
+nnoremap う u
+nnoremap お o
+filetype plugin indent on
 
 "save undo history
 if has('persistent_undo')
