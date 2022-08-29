@@ -13,12 +13,18 @@ set smartindent
 set title
 set laststatus=2
 set wildmenu
+set foldmethod=syntax
 syntax on
 inoremap <silent> jj <ESC>
 inoremap <C-d> <Del>
 imap [ []<left>
 imap ( ()<left>
 imap { {}<left>
+noremap <c-h> <c-w><c-h>
+noremap <c-j> <c-w><c-j>
+noremap <c-k> <c-w><c-k>
+noremap <c-l> <c-w><c-l>
+autocmd BufRead * normal zR
 
 "save undo history
 if has('persistent_undo')
@@ -35,3 +41,6 @@ if has('vim_starting')
     " 置換モード時に非点滅の下線タイプのカーソル
     let &t_SR .= "\e[4 q"
 end
+
+packloadall
+silent! helptags ALL
