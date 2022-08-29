@@ -44,6 +44,8 @@ alias ls="exa"
 alias ll="exa -l"
 alias lla="exa -la"
 alias ..="cd .."
+alias yabai="bat ~/.yabairc"
+alias skhd="bat ~/.skhdrc"
 
 ##########
 # docker #
