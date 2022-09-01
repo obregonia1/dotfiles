@@ -33,6 +33,7 @@ noremap <c-j> <c-w><c-j>
 noremap <c-k> <c-w><c-k>
 noremap <c-l> <c-w><c-l>
 autocmd BufRead * normal zR
+nmap <Esc><Esc> :nohl<CR>
 
 "save undo history
 if has('persistent_undo')
