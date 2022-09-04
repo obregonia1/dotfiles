@@ -71,3 +71,4 @@ noremap <C-S-v> "*P
 set keep-english-in-normal-and-restore-in-insert
 let mapleader="s"
 set easymotion
+set surround
