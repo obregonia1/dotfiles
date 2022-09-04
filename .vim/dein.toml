@@ -1,0 +1,6 @@
+[[plugins]]
+repo = 'tpope/vim-surround'
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
