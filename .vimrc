@@ -69,6 +69,10 @@ syntax on
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 inoremap <C-d> <Del>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap ' ''<esc>i
+inoremap " ""<esc>i
 imap [ []<left>
 imap ( ()<left>
 imap { {}<left>
