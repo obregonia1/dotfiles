@@ -6,3 +6,5 @@ repo = 'tpope/vim-unimpaired'
 repo = 'easymotion/vim-easymotion'
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+[[plugins]]
+repo = 'tpope/vim-fugitive'
