@@ -107,3 +107,6 @@ end
 
 packloadall
 silent! helptags ALL
+set laststatus=2
+set showcmd
+
