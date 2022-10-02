@@ -68,6 +68,9 @@ noremap "+p "*p
 noremap "+P "*P
 noremap <C-S-c> "*y
 noremap <C-S-v> "*P
+inoremap <C-d> <Del>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 set keep-english-in-normal-and-restore-in-insert
 let mapleader="s"
 set easymotion
