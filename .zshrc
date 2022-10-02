@@ -44,8 +44,8 @@ alias ls="exa"
 alias ll="exa -l"
 alias lla="exa -la"
 alias ..="cd .."
-alias yabai="bat ~/.yabairc"
-alias skhd="bat ~/.skhdrc"
+alias ...="cd ../.."
+alias g++="g++ -std=c++11"
 
 ##########
 # docker #
@@ -88,6 +88,8 @@ function dirtouch() {
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
+
+acopen () { acc contest $1 | awk '{print $NF}' | xargs open }
 
 # setting to ctrl + w delete to symbol
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
