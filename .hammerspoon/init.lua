@@ -38,35 +38,35 @@ local function keyCode(key, mods, callback)
   end
 end
 
-local function switchHotKeys(enable)
-    hotkeys = hs.hotkey.getHotkeys()
-    if enable then
-        for k, v in pairs(hotkeys) do
-            v["_hk"]:enable()
-        end
-    else
-        for n in pairs(limitedRemaps) do
-            hotkeys[n]["_hk"]:disable()
-        end
-    end
-end
+--local function switchHotKeys(enable)
+--    hotkeys = hs.hotkey.getHotkeys()
+--    if enable then
+--        for k, v in pairs(hotkeys) do
+--            v["_hk"]:enable()
+--        end
+--    else
+--        for n in pairs(limitedRemaps) do
+--            hotkeys[n]["_hk"]:disable()
+--        end
+--    end
+--end
 
-local function handleGlobalEvent(name, event, app)
-    if event == hs.application.watcher.activated then
-        if name == "Google Chrome" then
-            switchHotKeys(true)
-        else
-            switchHotKeys(false)
-        end
-    end
-end
+--local function handleGlobalEvent(name, event, app)
+--    if event == hs.application.watcher.activated then
+--        if name == "Google Chrome" then
+--            switchHotKeys(true)
+--        else
+--            switchHotKeys(false)
+--        end
+--    end
+--end
 
 local function remapKey(modifiers, key, keyCode)
    hs.hotkey.bind(modifiers, key, keyCode, nil, keyCode)
 end
 
-watcher = hs.application.watcher.new(handleGlobalEvent)
-watcher:start()
+--watcher = hs.application.watcher.new(handleGlobalEvent)
+--watcher:start()
 
 limitedRemaps = {1, 2}
 
