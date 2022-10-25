@@ -227,4 +227,7 @@ export PS1="%~ $ "
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
-export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/openssl@1.1/bin"
+export PATH="/Users/kentaro/.asdf/shims:$PATH"
+
+source /Users/kentaro/.config/broot/launcher/bash/br
