@@ -9,7 +9,6 @@ alias gs="git switch"
 alias gsc="git switch -c"
 alias gsd="git switch develop"
 alias gpd="git pull origin develop"
-alias gh="git history"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gca="git commit --amend"
@@ -31,13 +30,10 @@ alias rdm="rails db:migrate"
 alias sz="source ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias vz="vim ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias lz="bat ~/src/github.com/obregonia1/dotfiles/.zshrc"
-alias fc="find_cd"
-alias yare="rm -rf node_modules/.cache/ && yarn dev"
 alias mdc="mkdir_cd"
 alias so="source"
 alias le="less"
 alias vi="vim"
-alias dirto="dirtouch"
 alias pbc="pbcopy"
 alias la="exa -a"
 alias ls="exa"
@@ -45,12 +41,12 @@ alias ll="exa -l"
 alias lla="exa -la"
 alias ..="cd .."
 alias ...="cd ../.."
-alias g++="g++ -std=c++11"
+alias g++="/opt/homebrew/bin/g++-12"
+alias pcp="peco | pbcopy"
 
 ##########
 # docker #
 ##########
-alias d="docker"
 alias dru="bin/docker exec site bundle exec rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
@@ -61,28 +57,8 @@ alias drc="bin/docker exec site rails c"
 alias dbe="bin/docker exec site bundle exec"
 alias da="docker attach"
 
-# delete line head to cursol
-bindkey \^U backward-kill-line
-
-# search directory and cd
-function find_cd() {
-    cd "$(fd  --type directory . | peco)"
-}
-
-# mkdir & cd made directory
-function mkdir_cd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-
 # run ls after cd
 function chpwd() { ls -G }
-
-# run touch after mkdir -p
-function dirtouch() {
-  for i in "$@"
-  do
-    mkdir -p $(dirname "$i")
-    touch "$i"
-  done
-}
 
 # git diff with bat
 batdiff() {
@@ -94,7 +70,6 @@ acopen () { acc contest $1 | awk '{print $NF}' | xargs open }
 # setting to ctrl + w delete to symbol
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
 
-export PATH=$PATH:~/bin
 export LESS="-iRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
@@ -106,14 +81,13 @@ setopt AUTO_CD
 setopt AUTO_PARAM_KEYS
 setopt inc_append_history
 setopt share_history
-export NODE_OPTIONS="--max-old-space-size=2048"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 typeset -aU path cdpath fpath manpath
 
 # switch brew by architecture
 if [ "$(uname -m)" = "arm64" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="$PATH:/opt/homebrew/bin"
   . /opt/homebrew/opt/asdf/libexec/asdf.sh
 else
   eval "$(/usr/local/bin/brew shellenv)"
@@ -203,31 +177,21 @@ function anyframe-cdr () {
     | anyframe-action-put
 }
 zle -N anyframe-cdr
-bindkey '^q' anyframe-cdr
 alias cdr="anyframe-cdr"
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# incremental history search with peco
-bindkey '^r' anyframe-widget-execute-history
-
 # display repositories managed by ghq and cd
 zle -N anyframe-widget-cd-ghq-repository
-bindkey '^]' anyframe-widget-cd-ghq-repository
 alias cdg="anyframe-widget-cd-ghq-repository"
 
 # select & switch git branch
-bindkey '^xh' anyframe-widget-checkout-git-branch
 alias gsh="anyframe-widget-checkout-git-branch"
 
-export PS1="%~ $ "
+# export PS1="%~ $ "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+export PATH="$HOME/.asdf/shims:$PATH"
 
-export PATH="$PATH:/opt/homebrew/opt/openssl@1.1/bin"
-export PATH="/Users/kentaro/.asdf/shims:$PATH"
-
-source /Users/kentaro/.config/broot/launcher/bash/br
