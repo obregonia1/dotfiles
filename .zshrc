@@ -19,6 +19,8 @@ alias gstu="git stash -u"
 alias gstp="git stash pop stash@{0}"
 alias gstl="git stash list"
 alias gad="git add"
+alias grb="git rebase"
+alias gco="git checkout"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias be="bundle exec"
@@ -194,4 +196,4 @@ alias gsh="anyframe-widget-checkout-git-branch"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="$HOME/.asdf/shims:$PATH"
-
+export PATH="$PATH:$HOME/bin"
