@@ -68,6 +68,7 @@ set foldmethod=syntax
 syntax on
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
+inoremap <C-a> <Home>
 inoremap <C-d> <Del>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
@@ -85,6 +86,9 @@ noremap <c-h> <c-w><c-h>
 noremap <c-j> <c-w><c-j>
 noremap <c-k> <c-w><c-k>
 noremap <c-l> <c-w><c-l>
+cnoremap <c-f> <Right>
+cnoremap <c-b> <Left>
+cnoremap <c-A> <Home>
 autocmd BufRead * normal zR
 nmap <Esc><Esc> :nohl<CR>
 map s <Plug>(easymotion-prefix)
