@@ -95,9 +95,9 @@ map s <Plug>(easymotion-prefix)
 
 "save undo history
 if has('persistent_undo')
-	let undo_path = expand('~/.vim/undo')
-	exe 'set undodir=' .. undo_path
-	set undofile
+  let undo_path = expand('~/.vim/undo')
+  exe 'set undodir=' .. undo_path
+  set undofile
 end
 
 if has('vim_starting')
@@ -113,4 +113,25 @@ packloadall
 silent! helptags ALL
 set laststatus=2
 set showcmd
+" スペースや改行を可視化
+set listchars=tab:>-,trail:_,eol:↲
+set list
+" スペースや改行の色
+hi NonText ctermfg=8
+hi SpecialKey ctermfg=8
+colorscheme onedark
+" 全角スペースをハイライト表示
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme       * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+augroup END
+call ZenkakuSpace()
+" aliasを使えるようにする
+set shellcmdflag=-ic
+" インデントを自動で可視化
+let g:indent_guides_enable_on_vim_startup = 1
 
