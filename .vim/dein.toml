@@ -8,3 +8,7 @@ repo = 'easymotion/vim-easymotion'
 repo = 'vim-airline/vim-airline'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+[[plugins]]
+repo = 'joshdick/onedark.vim'
