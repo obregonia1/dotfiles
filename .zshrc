@@ -29,14 +29,16 @@ alias rs="rails s"
 alias r="rails"
 alias rc="rails c"
 alias rdm="rails db:migrate"
-alias sz="source ~/src/github.com/obregonia1/dotfiles/.zshrc"
-alias vz="vim ~/src/github.com/obregonia1/dotfiles/.zshrc"
-alias lz="bat ~/src/github.com/obregonia1/dotfiles/.zshrc"
-alias vv="vim ~/src/github.com/obregonia1/dotfiles/.vimrc"
+alias sz="source ~/.zshrc"
+alias vz="nvim ~/.zshrc"
+# alias vz="nvim ~/src/github.com/obregonia1/dotfiles/.zshrc"
+alias lz="bat ~/.zshrc"
+alias vv="nvim ~/.config/nvim/init.vim"
+alias vd="nvim ~/.config/nvim/dein.toml"
 alias mdc="mkdir_cd"
 alias so="source"
 alias le="less"
-alias vi="vim"
+alias vi="nvim"
 alias pbc="pbcopy"
 alias la="exa -a"
 alias ls="exa"
@@ -76,8 +78,8 @@ export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 export LESS="-iRMXS"
 export HISTSIZE=1000
 export SAVEHIST=100000
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PAGER='bat'
 setopt hist_ignore_dups
 setopt AUTO_CD
@@ -86,6 +88,7 @@ setopt inc_append_history
 setopt share_history
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 typeset -aU path cdpath fpath manpath
+bindkey \^U backward-kill-line
 
 # switch brew by architecture
 if [ "$(uname -m)" = "arm64" ]; then
