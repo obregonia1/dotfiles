@@ -70,6 +70,9 @@ set wildmenu
 set foldmethod=syntax
 set termguicolors
 set scrolloff=5
+" gitgutterを常に表示
+set signcolumn=yes
+set updatetime=100
 filetype plugin indent on
 let g:mapleader = "\<Space>"
 
@@ -156,5 +159,3 @@ call ZenkakuSpace()
 
 " shellのaliasを使えるようにする
 set shellcmdflag=-ic
-" インデントを自動で可視化
-let g:indent_guides_enable_on_vim_startup = 1
