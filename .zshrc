@@ -14,13 +14,14 @@ alias gcm="git commit -m"
 alias gca="git commit --amend"
 alias gst="git stash"
 alias gstc="git stash clear"
-alias gstat="git status" 
+alias gstat="git status"
 alias gstu="git stash -u"
 alias gstp="git stash pop stash@{0}"
 alias gstl="git stash list"
 alias gad="git add"
 alias grb="git rebase"
 alias gco="git checkout"
+alias gcp="git log --oneline | peco | awk '{print \$1}' | pbcopy"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias be="bundle exec"
@@ -73,7 +74,7 @@ batdiff() {
 acopen () { acc contest $1 | awk '{print $NF}' | xargs open }
 
 # setting to ctrl + w delete to symbol
-export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
 export LESS="-iRMXS"
 export HISTSIZE=1000
@@ -163,7 +164,7 @@ autoload -Uz compinit && compinit
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-zstyle ':completion:*:default' menu select=1 
+zstyle ':completion:*:default' menu select=1
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
