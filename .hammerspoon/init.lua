@@ -53,7 +53,7 @@ end
 
 local function handleGlobalEvent(name, event, app)
     if event == hs.application.watcher.activated then
-        if name == "Google Chrome" then
+        if name == "Google Chrome" or name == "Slack" then
             switchHotKeys(true)
         else
             switchHotKeys(false)

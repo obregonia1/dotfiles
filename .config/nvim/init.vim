@@ -103,6 +103,8 @@ nnoremap <Leader>v :new $MYVIMRC<CR>
 nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
 " スペース + r でvimrcを
 nnoremap <Leader>r :source $MYVIMRC<CR>
+nnoremap <silent> <leader>j :bprev<CR>
+nnoremap <silent> <leader>k :bnext<CR>
 
 " ヴィジュアル
 vnoremap L $
@@ -115,7 +117,7 @@ cnoremap <c-A> <Home>
 autocmd BufRead * normal zR
 " 保存時末尾の空白削除
 autocmd BufWritePre * :%s/\s\+$//e
-nmap <Esc><Esc> :nohl<CR>
+nmap <Esc> :nohl<CR>
 map s <Plug>(easymotion-prefix)
 
 "save undo history

@@ -178,6 +178,7 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
+depends = ['mason.nvim', 'mason-lspconfig.nvim']
 hook_add = '''
 lua <<EOF
   require("mason").setup()
@@ -195,7 +196,7 @@ lua <<EOF
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -220,4 +221,8 @@ repo = 'williamboman/mason.nvim'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-depends = [ 'mason.nvim' ]
+depends = ['mason.nvim']
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+on_ft = ['slim']
