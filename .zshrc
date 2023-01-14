@@ -21,6 +21,7 @@ alias gstl="git stash list"
 alias gad="git add"
 alias grb="git rebase"
 alias gco="git checkout"
+alias grs="git restore"
 alias gcp="git log --oneline | peco | awk '{print \$1}' | pbcopy"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
@@ -202,3 +203,4 @@ alias gsh="anyframe-widget-checkout-git-branch"
 
 export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:$HOME/bin"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
