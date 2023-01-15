@@ -179,11 +179,20 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 depends = ['mason.nvim', 'mason-lspconfig.nvim']
-on_ft = ['ruby','typescript']
+on_ft = ['ruby', 'typescript', 'javascript']
 hook_add = '''
 lua <<EOF
-  require("mason").setup()
+  local mason_lspconfig = require("mason")
   require("mason-lspconfig").setup()
+
+  mason_lspconfig.setup({
+    ensure_installed = {
+      'tsserver',
+      'eslint',
+    },
+    automatic_installation = true,
+  })
+
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   local opts = { noremap=true, silent=true }
@@ -191,42 +200,48 @@ lua <<EOF
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
   local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-  end
+   end
 
   local lsp_flags = {
-  debounce_text_changes = 150,
+    debounce_text_changes = 150,
   }
-  require('lspconfig')['tsserver'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-  }
-  require('lspconfig').solargraph.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-  }
+  local lspconfig = require('lspconfig')
+  local servers = { 'solargraph', 'tsserver', 'vuels' }
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup{
+        flags = {
+      debounce_text_changes = 150,
+      },
+    settings = {
+      solargraph = {
+        diagnostics = false,
+        commandPath = '/Users/kentaro/.asdf/shims/solargraph',
+        autostart = false
+      }
+    }
+    }
+  end
 EOF
+
+let g:LanguageClient_serverCommands = {
+        \ 'ruby': ['solargraph', 'stdio'],
+        \ }
+
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <space>D <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <space>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <space>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <space>f <cmd>lua vim.lsp.buf.format({ async = true })<CR>
 '''
 
 [[plugins]]
@@ -239,3 +254,6 @@ depends = ['mason.nvim']
 [[plugins]]
 repo = 'slim-template/vim-slim'
 on_ft = ['slim']
+
+[[plugins]]
+repo = 'mbbill/undotree'

@@ -107,6 +107,7 @@ nnoremap <Leader>r :source $MYVIMRC<CR>
 nnoremap <silent> <leader>j :bprev<CR>
 nnoremap <silent> <leader>k :bnext<CR>
 nnoremap <leader>gg :G<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " ヴィジュアル
 vnoremap L $
