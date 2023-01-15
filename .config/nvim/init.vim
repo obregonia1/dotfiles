@@ -97,6 +97,7 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap L $
 " スペース + wでファイル保存
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 " スペース + v でvimrcを開く
 nnoremap <Leader>v :new $MYVIMRC<CR>
 " スペース + d でdein.tomlを開く
@@ -105,6 +106,7 @@ nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
 nnoremap <Leader>r :source $MYVIMRC<CR>
 nnoremap <silent> <leader>j :bprev<CR>
 nnoremap <silent> <leader>k :bnext<CR>
+nnoremap <leader>gg :G<CR>
 
 " ヴィジュアル
 vnoremap L $
