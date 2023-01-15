@@ -4,8 +4,6 @@
 	username = obregonia1
 [core]
 	excludesfile = /Users/kentaro/.gitignore_global
-[commit]
-	template = /Users/kentaro/.stCommitMsg
 [init]
 	defaultBranch = main
 [ghq]
