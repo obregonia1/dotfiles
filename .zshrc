@@ -132,6 +132,7 @@ export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/Cellar/zstd/1.5.2/lib:/usr/local/Ce
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+source ~/.cache/p10k-dump-kentaro.zsh
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
