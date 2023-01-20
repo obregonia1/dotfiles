@@ -1,2 +1,11 @@
 --glob
 !*/public/dist
+
+--glob
+!*/node_modules/*
+
+--glob
+!coverage/
+
+--glob
+!development.log
