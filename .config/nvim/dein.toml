@@ -258,3 +258,6 @@ on_ft = ['slim']
 
 [[plugins]]
 repo = 'mbbill/undotree'
+
+[[plugins]]
+repo = 'w0rp/ale'

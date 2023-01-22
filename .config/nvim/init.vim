@@ -30,11 +30,6 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
-  call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
-    \ })
-
 
   " end settings
   call dein#end()
@@ -179,16 +174,21 @@ call ZenkakuSpace()
 " shellのaliasを使えるようにする
 set shellcmdflag=-ic
 
-" Required for operations modifying multiple buffers like rename.
-set hidden
+let g:coc_global_extensions = ['coc-solargraph']
 
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-    \ }
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" note that if you are using Plug mapping you should not use `noremap` mappings.
-nmap <F5> <Plug>(lcn-menu)
-" Or map each action separately
-nmap <silent>K <Plug>(lcn-hover)
-nmap <silent> gd <Plug>(lcn-definition)
-nmap <silent> <F2> <Plug>(lcn-rename)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
+let g:ale_fix_on_save = 1
