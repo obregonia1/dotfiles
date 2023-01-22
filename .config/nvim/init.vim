@@ -29,6 +29,13 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
+  call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+
+
   " end settings
   call dein#end()
   call dein#save_state()
@@ -50,6 +57,7 @@ endif
 " }}}
 
 language en_US.UTF-8
+syntax on
 set number
 set ruler
 set hlsearch
@@ -73,6 +81,7 @@ set scrolloff=5
 " gitgutterを常に表示
 set signcolumn=yes
 set updatetime=100
+set history=10000
 filetype plugin indent on
 let g:mapleader = "\<Space>"
 
@@ -102,15 +111,20 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>v :new $MYVIMRC<CR>
 " スペース + d でdein.tomlを開く
 nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
-" スペース + r でvimrcを
-nnoremap <Leader>r :source $MYVIMRC<CR>
+" スペース + r でvimrcを開く
+nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>j :bprev<CR>
 nnoremap <silent> <leader>k :bnext<CR>
 nnoremap <leader>gg :G<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
+" xはレジスタ入れない
+nnoremap x "_x
+" カレントバッファの相対パスをクリップボードにコピー
+nnoremap <Leader>cp :let @* = expand('%')<CR>
 
 " ヴィジュアル
 vnoremap L $
+vnoremap x "_x
 
 " コマンドライン
 cnoremap <c-f> <Right>
@@ -164,3 +178,17 @@ call ZenkakuSpace()
 
 " shellのaliasを使えるようにする
 set shellcmdflag=-ic
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
+    \ }
+
+" note that if you are using Plug mapping you should not use `noremap` mappings.
+nmap <F5> <Plug>(lcn-menu)
+" Or map each action separately
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent> gd <Plug>(lcn-definition)
+nmap <silent> <F2> <Plug>(lcn-rename)
