@@ -29,8 +29,6 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-  call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
-
   " end settings
   call dein#end()
   call dein#save_state()
