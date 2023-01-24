@@ -22,6 +22,7 @@ alias gad="git add"
 alias grb="git rebase"
 alias gco="git checkout"
 alias grs="git restore"
+alias gss="git status"
 alias gcp="git log --oneline | peco | awk '{print \$1}' | pbcopy"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
@@ -33,7 +34,6 @@ alias rc="rails c"
 alias rdm="rails db:migrate"
 alias sz="source ~/.zshrc"
 alias vz="nvim ~/.zshrc"
-# alias vz="nvim ~/src/github.com/obregonia1/dotfiles/.zshrc"
 alias lz="bat ~/.zshrc"
 alias vv="nvim ~/.config/nvim/init.vim"
 alias vd="nvim ~/.config/nvim/dein.toml"
@@ -118,9 +118,9 @@ export PATH=$PATH:`npm bin -g`
 #  export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 #  export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1o/lib/
 #fi
-# export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export PATH="/usr/local/Cellar/openssl@1.1/1.1.1m/bin:$PATH"
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/Cellar/zstd/1.5.2/lib:/usr/local/Cellar/openssl@1.1/1.1.1m/lib/
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/openssl@1.1/1.1.1s/bin:$PATH"
+export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/zstd/1.5.2/lib:/opt/homebrew/Cellar/openssl@1.1/1.1.1s/lib/
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 
@@ -129,10 +129,10 @@ export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/Cellar/zstd/1.5.2/lib:/usr/local/Ce
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-source ~/.cache/p10k-dump-kentaro.zsh
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+# source ~/.cache/p10k-dump-kentaro.zsh
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -154,7 +154,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 zinit ice depth"1" # git clone depth
-zinit light romkatv/powerlevel10k
+# zinit light romkatv/powerlevel10k
 
 zinit snippet PZT::modules/helper/init.zsh
 zinit snippet PZTM::environment
@@ -170,7 +170,6 @@ zstyle ':completion:*:default' menu select=1
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light gimbo/iterm2-tabs.zsh
 zinit light paulirish/git-open
 zinit light supercrabtree/k
 
@@ -197,7 +196,7 @@ alias cdg="anyframe-widget-cd-ghq-repository"
 # select & switch git branch
 alias gsh="anyframe-widget-checkout-git-branch"
 
-# export PS1="%~ $ "
+export PS1="%~ $ "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
