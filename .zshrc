@@ -23,7 +23,8 @@ alias grb="git rebase"
 alias gco="git checkout"
 alias grs="git restore"
 alias gss="git status"
-alias gcp="git log --oneline | peco | awk '{print \$1}' | pbcopy"
+alias gcp="git log --oneline | peco | awk '{print \$1}' | tr -d '\n' | pbcopy"
+alias gbp="gb | peco | awk '{print \$NF}' | tr -d '\n' | pbc"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias be="bundle exec"
@@ -49,7 +50,7 @@ alias lla="exa -la"
 alias ..="cd .."
 alias ...="cd ../.."
 alias g++="/opt/homebrew/bin/g++-12"
-alias pcp="peco | pbcopy"
+alias pcp="peco | tr -d '\n' | pbcopy"
 
 ##########
 # docker #
