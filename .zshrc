@@ -49,7 +49,7 @@ alias ll="exa -l"
 alias lla="exa -la"
 alias ..="cd .."
 alias ...="cd ../.."
-alias g++="/opt/homebrew/bin/g++-12"
+alias g++="/opt/homebrew/bin/g++-12 -I /Users/kentaro/src/github.com/obregonia1/at_coder/ac-library-master"
 alias pcp="peco | tr -d '\n' | pbcopy"
 
 ##########
