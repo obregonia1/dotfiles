@@ -92,6 +92,9 @@ inoremap " ""<esc>i
 inoremap [ []<left>
 inoremap ( ()<left>
 inoremap { {}<left>
+inoremap <C-o> <esc><s-o>
+" coc.vim
+inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
 
 " ノーマル
 nnoremap <c-h> <c-w><c-h>
