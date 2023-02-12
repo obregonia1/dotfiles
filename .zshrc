@@ -25,6 +25,8 @@ alias grs="git restore"
 alias gss="git status"
 alias gcp="git log --oneline | peco | awk '{print \$1}' | tr -d '\n' | pbcopy"
 alias gbp="gb | peco | awk '{print \$NF}' | tr -d '\n' | pbc"
+alias gdf="git diff"
+alias glp="git log -p"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
 
 alias be="bundle exec"
