@@ -75,7 +75,7 @@ set scrolloff=5
 set signcolumn=yes
 set updatetime=100
 set history=10000
-set viminfo='1000
+set viminfo+=!
 
 filetype plugin indent on
 let g:mapleader = "\<Space>"
