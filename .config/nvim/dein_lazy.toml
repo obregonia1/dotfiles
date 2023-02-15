@@ -17,3 +17,11 @@ on_ft = ['toml']
 [[plugins]]
 repo = 'digitaltoad/vim-pug'
 on_ft = ['vue']
+
+[[plugins]]
+repo = 'jparise/vim-graphql'
+on_ft = ['graphql']
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = ['tf']
