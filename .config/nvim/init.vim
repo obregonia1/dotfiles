@@ -150,6 +150,12 @@ nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 
+" coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 autocmd BufRead * normal zR
 " 保存時末尾の空白削除
 autocmd BufWritePre * :%s/\s\+$//e
