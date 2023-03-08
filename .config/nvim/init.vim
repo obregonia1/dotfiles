@@ -102,6 +102,7 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap L $
+nnoremap <Leader>e :Explore<CR>
 " スペース + wでファイル保存
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
