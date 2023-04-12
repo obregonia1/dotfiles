@@ -102,7 +102,9 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap L $
-nnoremap <Leader>e :Explore<CR>
+nnoremap <Leader>e :Fern . -reveal=%<CR>
+nnoremap <Leader>sp :sp<CR>
+nnoremap <Leader>vs :vs<CR>
 " スペース + wでファイル保存
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
