@@ -103,6 +103,8 @@ nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap L $
 nnoremap <Leader>e :Fern . -reveal=%<CR>
+nnoremap <Leader>ve :Fern . -reveal=% -opener=vsplit<CR>
+nnoremap <Leader>se :Fern . -reveal=% -opener=split<CR>
 nnoremap <Leader>sp :sp<CR>
 nnoremap <Leader>vs :vs<CR>
 " スペース + wでファイル保存
