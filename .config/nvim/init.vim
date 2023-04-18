@@ -122,6 +122,8 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap x "_x
 " カレントバッファの相対パスをクリップボードにコピー
 nnoremap <Leader>cp :let @* = expand('%')<CR>
+nnoremap j gj
+nnoremap k gk
 
 " ヴィジュアル
 vnoremap L $
