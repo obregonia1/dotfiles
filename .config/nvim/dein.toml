@@ -305,3 +305,13 @@ augroup fern-settings
   autocmd FileType fern call s:fern_settings()
 augroup END
 '''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+rev = '0.1.x'
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'

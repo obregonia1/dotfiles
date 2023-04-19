@@ -126,6 +126,10 @@ nnoremap x "_x
 nnoremap <Leader>cp :let @* = expand('%')<CR>
 nnoremap j gj
 nnoremap k gk
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ヴィジュアル
 vnoremap L $
