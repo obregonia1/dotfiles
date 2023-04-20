@@ -310,8 +310,4 @@ augroup END
 repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-rev = '0.1.x'
-
-[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
