@@ -68,7 +68,7 @@ set smartindent
 set title
 set laststatus=2
 set wildmenu
-set foldmethod=syntax
+" set foldmethod=syntax
 set termguicolors
 set scrolloff=5
 " gitgutterを常に表示
@@ -111,13 +111,13 @@ nnoremap <Leader>vs :vs<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 " スペース + v でvimrcを開く
-nnoremap <Leader>v :new $MYVIMRC<CR>
+" nnoremap <Leader>v :new $MYVIMRC<CR>
 " スペース + d でdein.tomlを開く
-nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
+" nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
 " スペース + r でvimrcを開く
 nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
-nnoremap <silent> <leader>j :bprev<CR>
-nnoremap <silent> <leader>k :bnext<CR>
+nnoremap <silent> <leader>k :bprev<CR>
+nnoremap <silent> <leader>j :bnext<CR>
 nnoremap <leader>gg :G<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 " xはレジスタ入れない
@@ -139,6 +139,15 @@ vnoremap x "_x
 cnoremap <c-f> <Right>
 cnoremap <c-b> <Left>
 cnoremap <c-A> <Home>
+function! RemoveCharAfterCursor()
+    let cmdline = getcmdline()
+    let pos = getcmdpos() - 1
+    if pos == 0
+        return cmdline[1:]
+    endif
+    return cmdline[:pos - 1] . cmdline[pos + 1:]
+endfunction
+cnoremap <C-d> <C-\>eRemoveCharAfterCursor()<CR>
 
 " fzf-preview
 nmap <Leader>f [fzf-p]
@@ -201,7 +210,7 @@ set list
 " スペースや改行の色
 " hi NonText ctermfg=8
 " hi SpecialKey ctermfg=8
-colorscheme onedark
+
 " 全角スペースをハイライト表示
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta

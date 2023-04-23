@@ -19,8 +19,14 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 
+# [[plugins]]
+# repo = 'joshdick/onedark.vim'
+
 [[plugins]]
-repo = 'joshdick/onedark.vim'
+repo = 'folke/tokyonight.nvim'
+hook_add = '''
+colorscheme tokyonight
+'''
 
 # [[plugins]]
 # repo = 'vim-denops/denops.vim'
@@ -279,16 +285,19 @@ rev = 'release'
 merged = '0'
 # hook_source = 'call coil398#init#coc#hook_source()'
 
-[[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-merged = '0'
+# [[plugins]]
+# repo = 'junegunn/fzf'
+# build = './install --all'
+# merged = '0'
 
 [[plugins]]
 repo = 'jeetsukumaran/vim-buffergator'
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
+hook_add = '''
+let g:fern#default_hidden = 1
+'''
 
 [[plugins]]
 repo = 'yuki-yano/fern-preview.vim'
