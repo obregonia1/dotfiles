@@ -320,3 +320,19 @@ repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+hook_add = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {
+      'lua'
+    }
+  },
+  ensure_installed = 'all'
+}
+EOF
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
