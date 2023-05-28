@@ -329,10 +329,17 @@ require'nvim-treesitter.configs'.setup {
       'lua'
     }
   },
-  ensure_installed = 'all'
+  ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html" },
 }
 EOF
 '''
 
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+hook_add = '''
+  let g:UltiSnipsSnippetDirectories=['coc/ultisnips']
+  let g:UltiSnipsExpandTrigger="<Down>"
+'''

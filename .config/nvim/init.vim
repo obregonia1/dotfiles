@@ -119,6 +119,9 @@ nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>k :bprev<CR>
 nnoremap <silent> <leader>j :bnext<CR>
 nnoremap <leader>gg :G<CR>
+nnoremap <leader>gs :G status<CR>
+nnoremap <leader>gb :G blame<CR>
+nnoremap <leader>gl :G log<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 " xはレジスタ入れない
 nnoremap x "_x
@@ -273,3 +276,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 " ガイドの幅
 let g:indent_guides_guide_size = 1
+
+let g:coc_global_extensions = [
+      \'coc-tsserver',
+      \'coc-solargraph',
+      \'coc-snippets'
+\]

@@ -40,3 +40,6 @@ require("trouble").setup({
 })
 EOF
 """
+
+[[plugins]]
+repo = 'tpope/vim-rhubarb'
