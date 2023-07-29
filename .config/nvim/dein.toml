@@ -263,9 +263,6 @@ repo = 'slim-template/vim-slim'
 on_ft = ['slim']
 
 [[plugins]]
-repo = 'mbbill/undotree'
-
-[[plugins]]
 repo = 'dense-analysis/ale'
 on_ft = ['ruby','typescript','javascript']
 hook_add = '''
@@ -292,6 +289,9 @@ merged = '0'
 
 [[plugins]]
 repo = 'jeetsukumaran/vim-buffergator'
+hook_add = '''
+let g:buffergator_suppress_keymaps = 1
+'''
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'

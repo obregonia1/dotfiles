@@ -122,7 +122,6 @@ nnoremap <leader>gg :G<CR>
 nnoremap <leader>gs :G status<CR>
 nnoremap <leader>gb :G blame<CR>
 nnoremap <leader>gl :G log<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
 " xはレジスタ入れない
 nnoremap x "_x
 " カレントバッファの相対パスをクリップボードにコピー
@@ -140,6 +139,15 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+" ウィンドウ幅調整を大きく
+nnoremap <C-w>+ 4<C-w>+
+nnoremap <C-w>- 4<C-w>-
+nnoremap <C-w>> 4<C-w>>
+nnoremap <C-w>< 4<C-w><
+" 水平分割してしたにターミナルを開く
+nnoremap <leader>t <cmd>40split \| wincmd j \| terminal<cr>
+nnoremap <leader>b <cmd>BuffergatorOpen<cr>
+
 " ヴィジュアル
 vnoremap L $
 vnoremap x "_x
@@ -185,6 +193,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" ターミナル
+tnoremap <leader>n <C-\><C-n>
 
 autocmd BufRead * normal zR
 " 保存時末尾の空白削除
