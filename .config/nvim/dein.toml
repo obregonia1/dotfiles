@@ -28,8 +28,8 @@ hook_add = '''
 colorscheme tokyonight
 '''
 
-# [[plugins]]
-# repo = 'vim-denops/denops.vim'
+[[plugins]]
+repo = 'vim-denops/denops.vim'
 
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
@@ -343,3 +343,18 @@ hook_add = '''
   let g:UltiSnipsSnippetDirectories=['coc/ultisnips']
   let g:UltiSnipsExpandTrigger="<Down>"
 '''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+
+[[plugins]]
+repo = 'bogado/file-line'
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-stay-cursor'
+hook_add = '''
+map y <Plug>(operator-stay-cursor-yank)
+'''
+
+[[plugins]]
+repo = 'kana/vim-operator-user'

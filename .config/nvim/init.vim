@@ -296,3 +296,29 @@ let g:coc_global_extensions = [
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+" skkeleton
+call skkeleton#config({ 'globalJisyo': '~/.skk/SKK-JISYO.L' })
+imap <C-j> <Plug>(skkeleton-enable)
+cmap <C-j> <Plug>(skkeleton-enable)
+
+" Terminalを開くとデフォルトでインサートにする
+autocmd TermOpen * startinsert
+
+" github の pr を開く openpr
+" gitconfig に設定してある openpr が前提
+function! s:openpre_open() abort
+  let line = line('.')
+  let fname = expand('%')
+  let cmd = printf('git blame -L %d,%d %s | cut -d " " -f 1', line, line, fname)
+  let sha1 = system(cmd)
+  let cmd = printf('gh pr list --state all -w --search %s', sha1)
+  echo system(cmd)
+endfunction
+nnoremap <Space>gpr :call <SID>openpre_open()<CR>
+
+" コメントアウト行で新しい行を追加すると自動でコメントアウトされるのを防ぐ
+augroup turn_off_auto_commenting
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=cro
+augroup END
