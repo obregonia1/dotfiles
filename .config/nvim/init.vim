@@ -92,7 +92,6 @@ inoremap " ""<esc>i
 inoremap [ []<left>
 inoremap ( ()<left>
 inoremap { {}<left>
-inoremap <C-o> <esc><s-o>
 " coc.vim
 inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
 
@@ -315,7 +314,7 @@ function! s:openpre_open() abort
   let cmd = printf('gh pr list --state all -w --search %s', sha1)
   echo system(cmd)
 endfunction
-nnoremap <Space>gpr :call <SID>openpre_open()<CR>
+nnoremap <leader>gpr :call <SID>openpre_open()<CR>
 
 " コメントアウト行で新しい行を追加すると自動でコメントアウトされるのを防ぐ
 augroup turn_off_auto_commenting
