@@ -364,3 +364,9 @@ repo = 'kana/vim-operator-user'
 
 [[plugins]]
 repo = 'haya14busa/vim-asterisk'
+hook_add = '''
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
+'''
