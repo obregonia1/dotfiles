@@ -164,6 +164,8 @@ function! RemoveCharAfterCursor()
     return cmdline[:pos - 1] . cmdline[pos + 1:]
 endfunction
 cnoremap <C-d> <C-\>eRemoveCharAfterCursor()<CR>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " fzf-preview
 " nmap <Leader>f [fzf-p]
