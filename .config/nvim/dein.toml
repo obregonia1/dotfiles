@@ -361,3 +361,6 @@ map y <Plug>(operator-stay-cursor-yank)
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
