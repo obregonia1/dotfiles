@@ -76,6 +76,7 @@ set signcolumn=yes
 set updatetime=100
 set history=10000
 set viminfo+=!
+set autoread
 
 filetype plugin indent on
 let g:mapleader = "\<Space>"
