@@ -198,6 +198,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 " ターミナル
 tnoremap <leader>n <C-\><C-n>
+tnoremap <C-f> <Right>
+tnoremap <C-b> <Left>
 
 autocmd BufRead * normal zR
 " 保存時末尾の空白削除
