@@ -77,6 +77,7 @@ set updatetime=100
 set history=10000
 set viminfo+=!
 set autoread
+set noswapfile
 
 filetype plugin indent on
 let g:mapleader = "\<Space>"
@@ -326,3 +327,9 @@ augroup turn_off_auto_commenting
   autocmd!
   autocmd FileType * setlocal formatoptions-=cro
 augroup END
+
+highlight LineNr guifg=#9a9a9a
+autocmd VimEnter,SourcePost * :highlight! ALEError guifg=#C30500 guibg=#151515
+autocmd VimEnter,SourcePost * :highlight! ALEWarning  guifg=#ffd300 guibg=#333333
+cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s///g<Left><Left>" : 's'
+highlight Comment ctermfg=1 guifg=#676fa9 cterm=italic
