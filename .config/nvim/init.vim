@@ -89,11 +89,6 @@ inoremap <C-a> <Home>
 inoremap <C-d> <Del>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
-inoremap [ []<left>
-inoremap ( ()<left>
-inoremap { {}<left>
 " coc.vim
 inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
 

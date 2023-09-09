@@ -370,3 +370,11 @@ map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 '''
+
+[[plugins]]
+repo = 'hrsh7th/nvim-insx'
+hook_add = '''
+lua <<EOF
+require('insx.preset.standard').setup()
+EOF
+'''
