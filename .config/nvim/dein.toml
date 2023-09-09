@@ -332,7 +332,7 @@ require'nvim-treesitter.configs'.setup {
       'lua'
     }
   },
-  ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html" },
+  ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html", "tsx", "typescript" },
 }
 EOF
 '''
