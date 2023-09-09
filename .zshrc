@@ -211,4 +211,5 @@ export PS1="%~ $ "
 
 export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
