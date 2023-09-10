@@ -43,3 +43,7 @@ EOF
 
 [[plugins]]
 repo = 'tpope/vim-rhubarb'
+
+[[plugins]]
+repo = 'pocke/rbs.vim'
+on_ft = ['rbs']

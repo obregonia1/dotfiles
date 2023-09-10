@@ -68,7 +68,7 @@ alias bdu="bin/docker up"
 alias drs="bin/docker exec site bundle exec rspec"
 alias ds="bin/docker exec site"
 alias de="docker exec"
-alias drc="bin/docker exec site rails c"
+alias drc="bin/docker exec site bundle exec spring stop && bin/docker exec -e DISABLE_PRY_RAILS=1 site rails c"
 alias dbe="bin/docker exec site bundle exec"
 alias da="docker attach"
 
