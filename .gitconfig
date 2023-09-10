@@ -12,3 +12,14 @@
 	prune = true
 [push]
 	default = current
+[credential]
+	helper = osxkeychain
+[pull]
+	rebase = false
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[color]
+	ui = true
