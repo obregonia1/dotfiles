@@ -333,6 +333,9 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html", "tsx", "typescript" },
+  autotag = {
+    enable = true,
+  },
 }
 EOF
 '''
@@ -389,3 +392,11 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 [[plugins]]
 repo = 'simeji/winresizer'
+
+[[plugins]]
+repo = 'windwp/nvim-ts-autotag'
+hook_add = '''
+lua <<EOF
+require('nvim-ts-autotag').setup()
+EOF
+'''
