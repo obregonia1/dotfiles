@@ -400,3 +400,9 @@ lua <<EOF
 require('nvim-ts-autotag').setup()
 EOF
 '''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'github/copilot.vim'
