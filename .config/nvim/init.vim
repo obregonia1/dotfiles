@@ -293,6 +293,12 @@ let g:coc_global_extensions = [
       \'coc-solargraph',
       \'coc-snippets'
 \]
+
+" neovim-ruby-host を動的に設定する
+let ruby_path = system('which ruby')
+let ruby_path = substitute(ruby_path, '\n\+$', '', '')
+let g:ruby_host_prog = substitute(ruby_path, 'bin/ruby$', 'bin/neovim-ruby-host', '')
+
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
