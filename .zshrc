@@ -34,7 +34,6 @@ alias glp="git log -p"
 alias glo="git log --oneline"
 alias gls="git log --stat"
 alias delete-branches="git branch --merged|egrep -v '\*|develop|main|master'|xargs git branch -d"
-
 alias be="bundle exec"
 alias bi="bundle install"
 alias rs="rails s"
@@ -105,18 +104,10 @@ bindkey \^U backward-kill-line
 if [ "$(uname -m)" = "arm64" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export PATH="$PATH:/opt/homebrew/bin"
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
 else
   eval "$(/usr/local/bin/brew shellenv)"
   export PATH=/usr/local/bin:$PATH
-  # for m1
-  #  . /usr/local/opt/asdf/libexec/asdf.sh
-
-  # for intel
-  . /usr/local/opt/asdf/asdf.sh
 fi
-
-export PATH=$PATH:`npm bin -g`
 
 # switch openssl version by ruby version
 #RUBY_V=$(ruby -v | awk '$0 = substr($2, 0, 3)')
@@ -210,7 +201,20 @@ export PS1="%~ $ "
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.yarn/bin"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+alias ch=peco-history-selection
+
+eval "$(rtx activate zsh)"
+
+# use irb console with debug.gem
+RUBY_DEBUG_IRB_CONSOLE=1
