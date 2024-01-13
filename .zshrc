@@ -196,6 +196,9 @@ alias cdg="anyframe-widget-cd-ghq-repository"
 # select & switch git branch
 alias gsh="anyframe-widget-checkout-git-branch"
 
+alias ch="anyframe-widget-put-history"
+bindkey '^R' anyframe-widget-put-history
+
 export PS1="%~ $ "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -203,16 +206,6 @@ export PS1="%~ $ "
 
 export PATH="$PATH:$HOME/bin"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-alias ch=peco-history-selection
 
 eval "$(rtx activate zsh)"
 
