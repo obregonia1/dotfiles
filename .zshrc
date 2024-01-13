@@ -100,6 +100,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 typeset -aU path cdpath fpath manpath
 bindkey \^U backward-kill-line
 
+export RUBY_CFLAGS="-w"
+
 # switch brew by architecture
 if [ "$(uname -m)" = "arm64" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -207,7 +209,7 @@ export PS1="%~ $ "
 export PATH="$PATH:$HOME/bin"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-eval "$(rtx activate zsh)"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # use irb console with debug.gem
 RUBY_DEBUG_IRB_CONSOLE=1
