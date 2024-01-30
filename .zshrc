@@ -213,3 +213,5 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # use irb console with debug.gem
 RUBY_DEBUG_IRB_CONSOLE=1
+
+alias bl="blueutil --unpair $MAGIC_TRACKPAD_ID; sleep 3 && blueutil --pair $MAGIC_TRACKPAD_ID"
