@@ -197,6 +197,7 @@ tnoremap <leader>n <C-\><C-n>
 tnoremap <C-f> <Right>
 tnoremap <C-b> <Left>
 
+" すべての折りたたみを開く
 autocmd BufRead * normal zR
 " 保存時末尾の空白削除
 autocmd BufWritePre * :%s/\s\+$//e
@@ -262,9 +263,9 @@ inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
 " <Tab>で次、<S+Tab>で前
 inoremap <silent><expr> <TAB>
   \ coc#pum#visible() ? coc#pum#next(1):
-  \ <SID>check_back_space() ? "\<Tab>" :
+  \ <SID>check_back_space() ? "\<C-n>" :
   \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>" " "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>" " "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 let g:ale_fixers = {
