@@ -3,5 +3,6 @@
   "solargraph.commandPath": "~/.asdf/shims/solargraph",
   "snippets.ultisnips.pythonPrompt": false,
   "eslint.autoFixOnSave": true,
-  "prettier.enable": true
+  "prettier.enable": true,
+  "coc.preferences.formatOnSave": true
 }
