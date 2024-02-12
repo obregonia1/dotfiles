@@ -406,3 +406,11 @@ repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'github/copilot.vim'
+
+[[plugins]]
+repo = 'kevinhwang91/nvim-hlslens'
+hook_add = '''
+lua <<EOF
+require('hlslens').setup()
+EOF
+'''
