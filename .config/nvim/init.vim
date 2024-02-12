@@ -246,8 +246,6 @@ call ZenkakuSpace()
 " shellのaliasを使えるようにする
 set shellcmdflag=-ic
 
-let g:coc_global_extensions = ['coc-solargraph']
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -288,12 +286,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 " ガイドの幅
 let g:indent_guides_guide_size = 1
-
-let g:coc_global_extensions = [
-      \'coc-tsserver',
-      \'coc-solargraph',
-      \'coc-snippets'
-\]
 
 " neovim-ruby-host を動的に設定する
 let ruby_path = system('which ruby')
