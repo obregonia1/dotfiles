@@ -297,7 +297,7 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " skkeleton
-call skkeleton#config({ 'globalDictionaries': ['~/.skkeleton/SKK-JISYO.L'] })
+call skkeleton#config({ 'globalDictionaries': ['~/.skk/SKK-JISYO.L'] })
 imap <C-j> <Plug>(skkeleton-enable)
 cmap <C-j> <Plug>(skkeleton-enable)
 
