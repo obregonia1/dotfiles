@@ -99,6 +99,7 @@ setopt share_history
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 typeset -aU path cdpath fpath manpath
 bindkey \^U backward-kill-line
+bindkey -e
 
 export RUBY_CFLAGS="-w"
 
