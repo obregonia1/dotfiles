@@ -216,3 +216,9 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 RUBY_DEBUG_IRB_CONSOLE=1
 
 alias bl="blueutil --unpair $MAGIC_TRACKPAD_ID; sleep 3 && blueutil --pair $MAGIC_TRACKPAD_ID"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
