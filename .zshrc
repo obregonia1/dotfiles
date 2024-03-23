@@ -99,6 +99,7 @@ setopt share_history
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 typeset -aU path cdpath fpath manpath
 bindkey \^U backward-kill-line
+bindkey -e
 
 export RUBY_CFLAGS="-w"
 
@@ -215,3 +216,9 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 RUBY_DEBUG_IRB_CONSOLE=1
 
 alias bl="blueutil --unpair $MAGIC_TRACKPAD_ID; sleep 3 && blueutil --pair $MAGIC_TRACKPAD_ID"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

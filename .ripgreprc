@@ -5,7 +5,13 @@
 !*/node_modules/*
 
 --glob
+!node_modules/*
+
+--glob
 !coverage/
 
 --glob
 !development.log
+
+--glob
+!dist_vite/
