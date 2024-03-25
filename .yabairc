@@ -32,7 +32,8 @@ yabai -m config right_padding                4
 yabai -m config window_gap                   4
 
 # rules
-yabai -m rule --add app="^PowerPreferences$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
 
 # restore position of floating windows when they are manually unfloated
 # ~/Scripts/yabai_restore.sh
