@@ -23,3 +23,5 @@
 	prompt = false
 [color]
 	ui = true
+[rebase]
+	autostash = true
