@@ -78,7 +78,8 @@ set history=10000
 set viminfo+=!
 set autoread
 set noswapfile
-
+" 行の終端より右にカーソルが移動できなくする
+set ve=block
 filetype plugin indent on
 let g:mapleader = "\<Space>"
 
@@ -122,6 +123,8 @@ nnoremap <leader>gl :G log<CR>
 nnoremap x "_x
 " カレントバッファの相対パスをクリップボードにコピー
 nnoremap <Leader>cp :let @* = expand('%')<CR>
+" カレントバッファのファイル名をクリップボードにコピー
+nnoremap <Leader>fp :let @* = expand('%:t')<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
