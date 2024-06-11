@@ -10,11 +10,11 @@ repo = 'tpope/vim-unimpaired'
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-hook_add = '''
-let g:airline#extensions#branch#enabled = 0
-'''
+# [[plugins]]
+# repo = 'vim-airline/vim-airline'
+# hook_add = '''
+# let g:airline#extensions#branch#enabled = 0
+# '''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -412,5 +412,21 @@ repo = 'kevinhwang91/nvim-hlslens'
 hook_add = '''
 lua <<EOF
 require('hlslens').setup()
+EOF
+'''
+
+[[plugins]]
+repo = 'nvim-tree/nvim-web-devicons'
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+depends = 'nvim-tree/nvim-web-devicons'
+hook_add = '''
+lua <<EOF
+require('lualine').setup({
+  options = {
+    globalstatus = true
+  }
+})
 EOF
 '''
