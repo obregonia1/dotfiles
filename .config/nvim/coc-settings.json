@@ -1,6 +1,6 @@
 {
   "suggest.enablePreselect": true,
-  "solargraph.commandPath": "~/.asdf/shims/solargraph",
+  "solargraph.commandPath": "~/.local/share/mise/installs/ruby/3.2.2/bin/solargraph",
   "snippets.ultisnips.pythonPrompt": false,
   "eslint.autoFixOnSave": true,
   "prettier.enable": true,
