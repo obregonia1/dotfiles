@@ -66,7 +66,7 @@ set cursorline
 set incsearch
 set smartindent
 set title
-set laststatus=2
+set laststatus=3
 set wildmenu
 " set foldmethod=syntax
 set termguicolors
@@ -225,7 +225,6 @@ end
 
 packloadall
 silent! helptags ALL
-set laststatus=2
 set showcmd
 
 " スペースや改行を可視化
@@ -234,6 +233,7 @@ set list
 " スペースや改行の色
 " hi NonText ctermfg=8
 " hi SpecialKey ctermfg=8
+set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋
 
 " 全角スペースをハイライト表示
 function! ZenkakuSpace()
@@ -294,6 +294,7 @@ let g:indent_guides_guide_size = 1
 let ruby_path = system('which ruby')
 let ruby_path = substitute(ruby_path, '\n\+$', '', '')
 let g:ruby_host_prog = substitute(ruby_path, 'bin/ruby$', 'bin/neovim-ruby-host', '')
+let $PATH = '~/.local/share/mise/installs/ruby/3.2.2/bin:' . $PATH
 
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
