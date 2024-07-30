@@ -304,6 +304,7 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 call skkeleton#config({ 'globalDictionaries': ['~/.skk/SKK-JISYO.L'] })
 imap <C-j> <Plug>(skkeleton-enable)
 cmap <C-j> <Plug>(skkeleton-enable)
+call skkeleton#register_keymap('henkan', "\<C-h>", 'henkanBackward')
 
 " Terminalを開くとデフォルトでインサートにする
 autocmd TermOpen * startinsert
