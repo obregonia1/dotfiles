@@ -332,7 +332,7 @@ require'nvim-treesitter.configs'.setup {
       'lua'
     }
   },
-  ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html", "tsx", "typescript" },
+  ensure_installed = { "cpp", "lua", "vim", "vimdoc", "query", "ruby", "javascript", "vue", "scss", "pug", "json", "html", "tsx", "typescript", "markdown", "diff" },
   autotag = {
     enable = true,
   },
@@ -428,5 +428,18 @@ require('lualine').setup({
     globalstatus = true
   }
 })
+EOF
+'''
+
+[[plugins]]
+repo = 'CopilotC-Nvim/CopilotChat.nvim'
+depends = ['github/copilot.vim', 'nvim-lua/plenary.nvim']
+branch = 'canary'
+hook_add = '''
+lua <<EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
 EOF
 '''
