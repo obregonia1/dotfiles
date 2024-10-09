@@ -62,13 +62,13 @@ alias pcp="peco | tr -d '\n' | pbcopy"
 ##########
 # docker #
 ##########
-alias dru="bin/docker exec site bundle exec rubocop"
+alias dru="bin/rubocop"
 alias dp="docker ps"
 alias bdu="bin/docker up"
-alias drs="bin/docker exec site bundle exec rspec"
+alias drs="bin/rspec"
 alias ds="bin/docker exec site"
 alias de="docker exec"
-alias drc="bin/docker exec site bundle exec spring stop && bin/docker exec -e DISABLE_PRY_RAILS=1 site rails c"
+alias drc="bin/rails-c"
 alias dbe="bin/docker exec site bundle exec"
 alias da="docker attach"
 
@@ -216,9 +216,10 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 RUBY_DEBUG_IRB_CONSOLE=1
 
 alias bl="blueutil --unpair $MAGIC_TRACKPAD_ID; sleep 3 && blueutil --pair $MAGIC_TRACKPAD_ID"
+alias "$"=""
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/kentaro/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kentaro/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kentaro/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/kentaro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kentaro/google-cloud-sdk/completion.zsh.inc'; fi
