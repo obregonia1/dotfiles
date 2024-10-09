@@ -92,6 +92,18 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 " coc.vim
 inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
+inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
+
+" <Tab>で次、<S+Tab>で前
+inoremap <silent><expr> <TAB>
+  \ coc#pum#visible() ? coc#pum#next(1):
+  \ <SID>check_back_space() ? "\<C-n>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>" " "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " ノーマル
 nnoremap <c-h> <c-w><c-h>
@@ -99,9 +111,6 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap L $
-nnoremap <Leader>e :Fern . -reveal=%<CR>
-nnoremap <Leader>ve :Fern . -reveal=% -opener=vsplit<CR>
-nnoremap <Leader>se :Fern . -reveal=% -opener=split<CR>
 nnoremap <Leader>sp :sp<CR>
 nnoremap <Leader>vs :vs<CR>
 " スペース + wでファイル保存
@@ -115,10 +124,6 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>k :bprev<CR>
 nnoremap <silent> <leader>j :bnext<CR>
-nnoremap <leader>gg :G<CR>
-nnoremap <leader>gs :G status<CR>
-nnoremap <leader>gb :G blame<CR>
-nnoremap <leader>gl :G log<CR>
 " xはレジスタ入れない
 nnoremap x "_x
 " カレントバッファの相対パスをクリップボードにコピー
@@ -127,6 +132,24 @@ nnoremap <Leader>cp :let @* = expand('%')<CR>
 nnoremap <Leader>fp :let @* = expand('%:t')<CR>
 nnoremap j gj
 nnoremap k gk
+" ウィンドウ幅調整を大きく
+nnoremap <C-w>+ 4<C-w>+
+nnoremap <C-w>- 4<C-w>-
+nnoremap <C-w>> 4<C-w>>
+nnoremap <C-w>< 4<C-w><
+" 水平分割してしたにターミナルを開く
+nnoremap <leader>t <cmd>40split \| wincmd j \| terminal<cr>
+nnoremap <leader>b <cmd>BuffergatorOpen<cr>
+" fern
+nnoremap <Leader>e :Fern . -reveal=%<CR>
+nnoremap <Leader>ve :Fern . -reveal=% -opener=vsplit<CR>
+nnoremap <Leader>se :Fern . -reveal=% -opener=split<CR>
+" fugitive
+nnoremap <leader>gg :G<CR>
+nnoremap <leader>gs :G status<CR>
+nnoremap <leader>gb :G blame<CR>
+nnoremap <leader>gl :G log<CR>
+" telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -138,18 +161,12 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
-" ウィンドウ幅調整を大きく
-nnoremap <C-w>+ 4<C-w>+
-nnoremap <C-w>- 4<C-w>-
-nnoremap <C-w>> 4<C-w>>
-nnoremap <C-w>< 4<C-w><
-" 水平分割してしたにターミナルを開く
-nnoremap <leader>t <cmd>40split \| wincmd j \| terminal<cr>
-nnoremap <leader>b <cmd>BuffergatorOpen<cr>
 
 " ヴィジュアル
 vnoremap L $
 vnoremap x "_x
+vnoremap j gj
+vnoremap k gk
 
 " コマンドライン
 cnoremap <c-f> <Right>
@@ -166,28 +183,6 @@ endfunction
 cnoremap <C-d> <C-\>eRemoveCharAfterCursor()<CR>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-
-" fzf-preview
-" nmap <Leader>f [fzf-p]
-" xmap <Leader>f [fzf-p]
-" nnoremap <silent> [fzf-p]f     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
-" nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
-" nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
-" nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
-" nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-" nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
-" nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
-" nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
-" nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
-" nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
-" nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-" xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-" nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
-" nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-" nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
-" nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.BlamePR<CR>
-
-" let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 
 " coc
 nmap <silent> gd <Plug>(coc-definition)
@@ -254,21 +249,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" autocomplete
-inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
-inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <Enter> coc#pum#visible() ? coc#pum#confirm() : "\<Enter>"
-inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
-inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
-
-" <Tab>で次、<S+Tab>で前
-inoremap <silent><expr> <TAB>
-  \ coc#pum#visible() ? coc#pum#next(1):
-  \ <SID>check_back_space() ? "\<C-n>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>" " "\<C-h>"
-inoremap <silent><expr> <c-space> coc#refresh()
-
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
@@ -295,6 +275,8 @@ let ruby_path = system('which ruby')
 let ruby_path = substitute(ruby_path, '\n\+$', '', '')
 let g:ruby_host_prog = substitute(ruby_path, 'bin/ruby$', 'bin/neovim-ruby-host', '')
 let $PATH = '~/.local/share/mise/installs/ruby/3.2.2/bin:' . $PATH
+
+let g:python3_host_prog = '~/.python/venv/bin/python'
 
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
