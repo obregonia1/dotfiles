@@ -2,8 +2,6 @@
 	name = Kentaro Takeyama
 	email = n.y.skate.of.minds@gmail.com
 	username = obregonia1
-[core]
-	excludesfile = /Users/kentaro/.gitignore_global
 [init]
 	defaultBranch = main
 [ghq]
