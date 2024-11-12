@@ -1,0 +1,13 @@
+name: Hello
+
+on: [push]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello World"
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
