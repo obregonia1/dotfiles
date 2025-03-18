@@ -302,6 +302,7 @@ function! s:openpre_open() abort
   echo system(cmd)
 endfunction
 nnoremap <leader>gpr :call <SID>openpre_open()<CR>
+nnoremap <leader>go :OpenGithubFile<CR>
 
 " コメントアウト行で新しい行を追加すると自動でコメントアウトされるのを防ぐ
 augroup turn_off_auto_commenting
