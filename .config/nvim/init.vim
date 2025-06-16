@@ -104,6 +104,8 @@ inoremap <silent><expr> <TAB>
   \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>" " "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent> <C-[> <ESC>
+inoremap <silent> <C-]> <ESC>
 
 " ノーマル
 nnoremap <c-h> <c-w><c-h>
@@ -127,7 +129,7 @@ nnoremap <silent> <leader>j :bnext<CR>
 " xはレジスタ入れない
 nnoremap x "_x
 " カレントバッファの相対パスをクリップボードにコピー
-nnoremap <Leader>cp :let @* = expand('%')<CR>
+nnoremap <Leader>cp :let @* = expand('%:.')<CR>
 " カレントバッファのファイル名をクリップボードにコピー
 nnoremap <Leader>fp :let @* = expand('%:t')<CR>
 nnoremap j gj
