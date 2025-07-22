@@ -170,7 +170,7 @@ vnoremap x "_x
 vnoremap j gj
 vnoremap k gk
 " 複数行を改行無しでヤンク
-vnoremap <leader>y :<C-u>let @+ = substitute(join(getline("'<", "'>"), ''), '\n', '', 'g')<CR>
+vnoremap <leader>y y:let @+ = substitute(@+, '\n', '', 'g')<CR>
 
 " コマンドライン
 cnoremap <c-f> <Right>
