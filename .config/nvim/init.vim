@@ -171,6 +171,9 @@ vnoremap j gj
 vnoremap k gk
 " 複数行を改行無しでヤンク
 vnoremap <leader>y y:let @+ = substitute(@+, '\n', '', 'g')<CR>
+" ペースト時に選択内容をヤンクしない（ブラックホールレジスタを使用）
+vnoremap p "_dP
+vnoremap <leader>jq :'<,'>!jq .<CR>
 
 " コマンドライン
 cnoremap <c-f> <Right>
