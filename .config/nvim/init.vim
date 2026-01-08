@@ -123,7 +123,7 @@ nnoremap <Leader>q :q<CR>
 " スペース + d でdein.tomlを開く
 " nnoremap <Leader>d :new ~/.config/nvim/dein.toml<CR>
 " スペース + r でvimrcを開く
-nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
+" nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>k :bprev<CR>
 nnoremap <silent> <leader>j :bnext<CR>
 " xはレジスタ入れない
