@@ -409,9 +409,6 @@ EOF
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
-repo = 'github/copilot.vim'
-
-[[plugins]]
 repo = 'kevinhwang91/nvim-hlslens'
 hook_add = '''
 lua <<EOF
@@ -432,19 +429,6 @@ require('lualine').setup({
     globalstatus = true
   }
 })
-EOF
-'''
-
-[[plugins]]
-repo = 'CopilotC-Nvim/CopilotChat.nvim'
-depends = ['github/copilot.vim', 'nvim-lua/plenary.nvim']
-branch = 'canary'
-hook_add = '''
-lua <<EOF
-require("CopilotChat").setup {
-  debug = true, -- Enable debugging
-  -- See Configuration section for rest
-}
 EOF
 '''
 
